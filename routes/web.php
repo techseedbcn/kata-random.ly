@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Page Controller
-Route::get('/', [App\Http\Controllers\PageController::class, 'home'])->name('home');
-Route::get('/group/randomizer', [App\Http\Controllers\PageController::class, 'randomizer'])->name('group-randomizer');
-Route::get('/kata/list', [App\Http\Controllers\PageController::class, 'kataList'])->name('kata-list');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/group/randomizer', [PageController::class, 'randomizer'])->name('group-randomizer');
+Route::get('/kata/list', [PageController::class, 'kataList'])->name('kata-list');
 
 //Auth::routes();
 
