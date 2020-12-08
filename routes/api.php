@@ -10,6 +10,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/katas','KataController@showAll');
-
 Route::get('/katas/{kata}','KataController@getKata');
+
 Route::get('/random-kata', [KataController::class, 'getRandomKata']);

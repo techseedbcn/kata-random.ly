@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kata;
 use Illuminate\Http\Request;
+use App\Http\Resources\Kata as KataResource;
 
 class KataController extends Controller
 {
