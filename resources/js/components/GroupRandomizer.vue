@@ -6,7 +6,7 @@
                     <div class="card-header">Group Randomizer</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        {{kata.name}}
                     </div>
                 </div>
             </div>
@@ -20,14 +20,15 @@
         components: {},
         data() {
             return {
-
+                kata: {}
             }
         },
 
         methods: {
             getRandomKata() {
-                $randomKata = axios.get();
-                $this.kata = $randomkata;
+                axios.get('/api/random-kata').then(response => {
+                    this.kata = response.data
+                });
             }
         },
 
