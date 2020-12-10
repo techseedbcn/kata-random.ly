@@ -45,8 +45,8 @@ class KataController extends Controller
 
     public function getRandomKata()
     {
-        $kata = Kata::all()->random();
+        $randomKata = Kata::all()->random();
 
-        return new KataResource($kata);
+        return new KataResource($randomKata);
     }
 }
