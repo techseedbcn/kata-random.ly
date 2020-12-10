@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kata;
+use App\Http\Resources\Kata as KataResource;
 use Illuminate\Http\Request;
 
 class KataController extends Controller
@@ -40,5 +41,17 @@ class KataController extends Controller
     public function destroy(Kata $kata)
     {
         //
+    }
+
+    public function getKatas()
+    {
+        $katas = KataResource::collection(Kata::all());
+        return $katas;
+    }
+
+    public function getKata(Kata $kata)
+    {
+        $newKata = New KataResource($kata);
+        return $newKata;
     }
 }
