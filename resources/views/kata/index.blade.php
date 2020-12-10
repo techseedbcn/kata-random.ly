@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <kata-list></kata-list>
+    <kata></kata>
 @endsection
