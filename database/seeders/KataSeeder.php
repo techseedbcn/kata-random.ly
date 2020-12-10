@@ -1,14 +1,14 @@
 <?php
 
 namespace Database\Seeders;
-use Database\Seeders\KataSeeder;
+use App\Models\Kata;
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class KataSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(KataSeeder::class);
+        Kata::factory(5)->create();
     }
 }
