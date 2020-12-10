@@ -2,9 +2,10 @@
 
 @section('content')
 
-<div class="show-more container">
-    <h3>{{$kata->name}}</h3><br>
+<div class="container">
     <div class="field">
+        <h5> Name</h5>
+        <p>{{$kata->name}}</p>
         <h5> Description</h5>
         <p>{{$kata->description}} </p>
         <h5> Level</h5>
