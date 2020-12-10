@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kata extends Model
+class Skill extends Model
 {
     use HasFactory;
 
-    public function skills()
+    public function katas()
     {
-        return $this->belongsToMany(Skill::class, 'kata_skill', 'kata_id', 'skill_id');
+        return $this->belongsToMany(Kata::class, 'kata_skill', 'skill_id', 'kata_id');
     }
 }
