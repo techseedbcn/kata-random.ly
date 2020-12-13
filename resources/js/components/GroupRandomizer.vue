@@ -90,14 +90,8 @@
                                     </div>
                                     <div class="col-md">
                                         <label for="topic-select">Do you want to target a specific topic/skill?</label>
-                                        <select id="topic-select" class="form-select" aria-label="Default select example">
-                                            <option value="1">Software Architecture</option>
-                                            <option value="2">Algorithms & Data Structures</option>
-                                            <option value="3">Object Oriented Design</option>
-                                            <option value="4">Design Patterns</option>
-                                            <option value="5">Refactoring</option>
-                                            <option value="6">Iterating Code</option>
-                                            <option value="7">Functional Programming</option>
+                                        <select v-model="selected_skill" id="topic-select" class="form-select" aria-label="Default select example">
+                                            <option v-for="(skill, key) in skills" :key="key" :model="skill">{{ skill.name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -128,7 +122,9 @@
                         languages: []
                     }
                 ],
-                kata: {}
+                kata: {},
+                skills: [],
+                selected_skill: {}
             }
         },
 
@@ -163,11 +159,18 @@
                 axios.get('/api/random-kata').then(response => {
                     this.kata = response.data;
                 });
+            },
+
+            getSkills() {
+                axios.get('/api/skills').then(response => {
+                    this.skills = response.data;
+                });
             }
         },
 
         mounted() {
             this.getRandomKata();
+            this.getSkills();
         }
     }
 </script>

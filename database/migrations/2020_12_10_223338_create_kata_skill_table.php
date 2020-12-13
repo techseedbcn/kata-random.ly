@@ -15,8 +15,8 @@ class CreateKataSkillTable extends Migration
     {
         Schema::create('kata_skill', function (Blueprint $table) {
             $table->id();
-            $this->foreignId('kata_id');
-            $this->foreignId('skill_id');
+            $table->foreignId('kata_id');
+            $table->foreignId('skill_id');
             $table->timestamps();
         });
     }
