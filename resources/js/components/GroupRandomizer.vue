@@ -56,17 +56,16 @@
                         <!-- TAB 2: FORMING THE GROUPS -->
                         <div class="tab-content border-0">
                             <div v-show="current_step==2">
+                                <div class="preview-coders">
+                                    <p v-for="(input, key) in inputs" :key="key">{{input.name}} - {{input.languages}}</p>
+                                </div>
                                 <p> 
                                     <strong>Select the number of groups you'd like to form OR the the size of the groups. We'll do the rest</strong>
                                 </p>
                                 <div class="row g-2">
                                     <div class="col-md">
                                         <label for="number-of-froups">Number of Groups</label>
-                                        <input type="number" class="form-control" id="floatingInputValue" placeholder="3">
-                                    </div>
-                                    <div class="col-md">
-                                        <label for="group-size">Number of Groups</label>
-                                        <input type="number" class="form-control"  id="floatingInputValue" placeholder="2">
+                                        <input v-model="groups" type="number" class="form-control" id="floatingInputValue" placeholder="3">
                                     </div>
                                 </div>
                             </div>
@@ -81,17 +80,14 @@
                                 <div class="row g-2" >
                                     <div class="col-md">
                                         <label for="level-select">Select the difficulty level of your kata</label>
-                                        <select id="level-select" class="form-select" aria-label="Default select example">
-                                            <option value="1">Youngling</option>
-                                            <option value="2">Padawan</option>
-                                            <option value="3">Jedi Knight</option>
-                                            <option value="3">Jedi Master</option>
+                                        <select v-model="selected_level" id="level-select" class="form-select" aria-label="Default select example">
+                                            <option v-for="(level, key) in levels" :key="key" :value="level">{{ level }}</option>
                                         </select>
                                     </div>
                                     <div class="col-md">
                                         <label for="topic-select">Do you want to target a specific topic/skill?</label>
                                         <select v-model="selected_skill" id="topic-select" class="form-select" aria-label="Default select example">
-                                            <option v-for="(skill, key) in skills" :key="key" :model="skill">{{ skill.name }}</option>
+                                            <option v-for="(skill, key) in skills" :key="key" :value="skill">{{ skill.name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -109,6 +105,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'GroupRandomizer',
         components: {},
@@ -122,9 +119,12 @@
                         languages: []
                     }
                 ],
+                groups: 0,
                 kata: {},
+                levels: ['Easy', 'Medium', 'Hard', 'God'],
                 skills: [],
-                selected_skill: {}
+                selected_level: '',
+                selected_skill: ''
             }
         },
 
@@ -147,16 +147,17 @@
                 this.max_step++;
             },
 
-            randomizeGroups() {
-                alert('This should trigger')
-            },
-
             goToStep(step) {
                 this.current_step = step;
             },
 
+            randomizeGroups() {
+                console.log(this.selected_level);
+                console.log(this.groups);
+            },
+
             getRandomKata() {
-                axios.get('/api/random-kata').then(response => {
+                axios.get('/api/random-kata/'+ this.level + '/' + this.selected_skill.id).then(response => {
                     this.kata = response.data;
                 });
             },
