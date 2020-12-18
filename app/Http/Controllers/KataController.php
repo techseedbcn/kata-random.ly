@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kata;
 use App\Http\Resources\Kata as KataResource;
 use Illuminate\Http\Request;
-use App\Http\Resources\Kata as KataResource;
 
 class KataController extends Controller
 {
@@ -54,6 +53,7 @@ class KataController extends Controller
     {
         $newKata = New KataResource($kata);
         return $newKata;
+    }
 
     public function getRandomKata()
     {
