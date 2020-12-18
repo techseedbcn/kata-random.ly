@@ -10,5 +10,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/katas', [KataController::class, 'getKatas']);
 Route::get('/katas/{kata}',[KataController::class, 'getKata']);
-
 Route::get('/random-kata', [KataController::class, 'getRandomKata']);
