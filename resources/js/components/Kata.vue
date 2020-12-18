@@ -1,8 +1,12 @@
 <template>
     <div class="container">
         <h1 class="mb-4"> Katas </h1>
+        <div class="input-group search-s mb-4">
+            <input class="form-control my-0 py-1 amber-border search-s" type="text" placeholder="Search kata..." aria-label="Search" v-model="search">
+        </div>
+
         <div class="kata-list">
-            <div class="card kata-card" style="width: 18rem;" v-bind:key="i" v-for="(kata, i) in kataList">
+            <div class="card kata-card" style="width: 18rem;" v-bind:key="i" v-for="(kata, i) in filteredKatas">
                 <img class="card-img-top" src="/images/background-light.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{kata.name}}</h5>
@@ -24,6 +28,7 @@
         data() {
             return {
                 kataList: [],
+                search: '',
             }
         },
         methods: {
@@ -33,10 +38,18 @@
                 });
             },
         },
+        computed: {
+            filteredKatas() {
+                return this.kataList.filter((kata) => {
+                    return kata.name.toLowerCase().match(this.search.toLowerCase());
+                });
+            },
+        },
         mounted() {
             this.getKatas();
-        }
+        },
     }
+
 </script>
 
 <style scoped>
