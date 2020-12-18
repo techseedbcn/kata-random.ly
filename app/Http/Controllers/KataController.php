@@ -62,11 +62,14 @@ class KataController extends Controller
         return new KataResource($randomKata);
     }
 
-    public function getRandomKataWithPreferences(string $level, int $skill_id)
+    public function getRandomKataWithPreferences(string $level = 'any', int $skill_id)
     {
+        $randomKata = Kata::randomly($level, $skill);
         $randomKata = Kata::where([
             'level' => $level,
             'skill' => $skill_id
-        ]);
+        ])->random();
+
+        return KataResource($randomKata);
     }
 }

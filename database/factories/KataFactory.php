@@ -13,7 +13,7 @@ class KataFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->text(50),
-            'level' => $this->faker->city,
+            'level' => $this->faker->randomElement(['easy', 'medium', 'hard']),
             'source' => $this->faker->lastName,
         ];
     }

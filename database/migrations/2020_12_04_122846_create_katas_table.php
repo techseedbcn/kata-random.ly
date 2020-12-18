@@ -12,7 +12,7 @@ class CreateKatasTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description', 200);
-            $table->text('level');
+            $table->enum('level', ['easy', 'medium', 'hard']);
             $table->string('source');
             $table->timestamps();
         });
